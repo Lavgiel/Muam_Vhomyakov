@@ -60,6 +60,30 @@ public class MainController {
     }
 
     // Контроллеры для пар
+    @GetMapping("/usersDates")
+    public String findAll(Model model){
+        List<Pair> pairs = pairService.getAll();
+        model.addAttribute("pairs", pairs);
+
+        return "usersDates-list";
+    }
+
+    @GetMapping("/pair-create")
+    public String createPairForm(Pair pair){
+        return "pair-create";
+    }
+
+    @PostMapping("/pair-create")
+    public String createPair(Pair pair){
+        pairService.savePair(pair);
+        return "redirect:/pairs";
+    }
+
+    @GetMapping("pair-delete/{id}")
+    public String deletePair(@PathVariable("id") long id){
+        pairService.deleteById(id);
+        return "redirect:/pairs";
+    }
     @GetMapping("/pairs")
     public String findAll(Model model){
         List<Pair> pairs = pairService.getAll();
@@ -84,4 +108,5 @@ public class MainController {
         pairService.deleteById(id);
         return "redirect:/pairs";
     }
+
 }
