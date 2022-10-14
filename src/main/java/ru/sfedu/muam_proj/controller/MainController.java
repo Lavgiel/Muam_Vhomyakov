@@ -101,13 +101,13 @@ public class MainController {
 
     @PostMapping("/usersDate-create")
     public String createUsersDate(UsersDate usersDate){
-        pairService.savePair(pair);
-        return "redirect:/pairs";
+        usersDateService.saveDate(usersDate);
+        return "redirect:/usersDate";
     }
 
-    @GetMapping("pair-delete/{id}")
-    public String deletePair(@PathVariable("id") long id){
-        pairService.deleteById(id);
-        return "redirect:/pairs";
+    @GetMapping("usersDate-delete/{id}")
+    public String deleteUsersDate(@PathVariable("id") long id){
+        usersDateService.deleteById(id);
+        return "redirect:/usersDate";
     }
 }
