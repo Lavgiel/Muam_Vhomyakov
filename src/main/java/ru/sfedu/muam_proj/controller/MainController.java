@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.sfedu.muam_proj.model.Pair;
 import ru.sfedu.muam_proj.model.User;
+import ru.sfedu.muam_proj.model.UsersDate;
 import ru.sfedu.muam_proj.service.PairService;
 import ru.sfedu.muam_proj.service.UserService;
 import ru.sfedu.muam_proj.service.UsersDateService;
@@ -60,32 +61,8 @@ public class MainController {
     }
 
     // Контроллеры для пар
-    @GetMapping("/usersDates")
-    public String findAll(Model model){
-        List<Pair> pairs = pairService.getAll();
-        model.addAttribute("pairs", pairs);
-
-        return "usersDates-list";
-    }
-
-    @GetMapping("/pair-create")
-    public String createPairForm(Pair pair){
-        return "pair-create";
-    }
-
-    @PostMapping("/pair-create")
-    public String createPair(Pair pair){
-        pairService.savePair(pair);
-        return "redirect:/pairs";
-    }
-
-    @GetMapping("pair-delete/{id}")
-    public String deletePair(@PathVariable("id") long id){
-        pairService.deleteById(id);
-        return "redirect:/pairs";
-    }
     @GetMapping("/pairs")
-    public String findAll(Model model){
+    public String findAllpairs(Model model){
         List<Pair> pairs = pairService.getAll();
         model.addAttribute("pairs", pairs);
 
@@ -109,4 +86,28 @@ public class MainController {
         return "redirect:/pairs";
     }
 
+    // Контроллеры для Dates
+    @GetMapping("/Dates")
+    public String findAll(Model model){
+        List<UsersDate> usersDate = usersDateService.getAll();
+        model.addAttribute("usersDate", usersDate);
+        return "usersDate-list";
+    }
+
+    @GetMapping("/pair-create")
+    public String createUsersDateForm(UsersDate usersDate){
+        return "usersDate-create";
+    }
+
+    @PostMapping("/usersDate-create")
+    public String createUsersDate(UsersDate usersDate){
+        pairService.savePair(pair);
+        return "redirect:/pairs";
+    }
+
+    @GetMapping("pair-delete/{id}")
+    public String deletePair(@PathVariable("id") long id){
+        pairService.deleteById(id);
+        return "redirect:/pairs";
+    }
 }
