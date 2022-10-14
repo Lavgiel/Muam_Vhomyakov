@@ -94,7 +94,7 @@ public class MainController {
         return "usersDate-list";
     }
 
-    @GetMapping("/pair-create")
+    @GetMapping("/usersDate-create")
     public String createUsersDateForm(UsersDate usersDate){
         return "usersDate-create";
     }
